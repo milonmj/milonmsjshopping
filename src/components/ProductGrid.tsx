@@ -5,9 +5,9 @@ type Product = {
   slug: string;
   nameBn: string;
   nameEn: string;
-  retailPrice: number;
-  discountPrice?: number | null;
-  wholesalePrice?: number | null;
+  retailPrice: any;
+  discountPrice?: any | null;
+  wholesalePrice?: any | null;
   stockStatus: "IN_STOCK" | "LOW_STOCK" | "OUT_OF_STOCK";
   images: { url: string }[];
 };
