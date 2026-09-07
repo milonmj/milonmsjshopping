@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import Link from "next/link";
 import { useWishlist } from "@/lib/wishlist-context";
 import { useCart } from "@/lib/cart-context";
@@ -6,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { Heart } from "lucide-react";
 import ProductImage from "@/components/ProductImage";
 
-export default function WishlistPage() {
+function WishlistContent() {
   const { items, toggle } = useWishlist();
   const { addItem } = useCart();
   const locale = useSearchParams().get("lang") === "en" ? "en" : "bn";
@@ -36,12 +37,12 @@ export default function WishlistPage() {
               <p className="mt-1 font-semibold text-brand-pink">৳{item.price}</p>
               <div className="mt-2 flex gap-2">
                 <button
-                  onClick={() => addItem({ productId: item.productId, slug: item.slug, name: item.name, image: item.image, unitPrice: item.price, quantity: 1, maxQuantity: 99 })}
+                  onClick={() => addItem({ productId: item.productId, slug: item.slug, name: item.name, image: item.image, price: item.price })}
                   className="flex-1 rounded-full bg-brand-pink px-3 py-1.5 text-xs font-semibold text-white"
                 >
                   {locale === "bn" ? "কার্টে যোগ করুন" : "Add to Cart"}
                 </button>
-                <button onClick={() => toggle(item)} aria-label="Remove from wishlist" className="rounded-full border border-brand-pinkLight px-2 text-brand-ink/50">
+                <button onClick={() => toggle(item)} aria-label="Remove from wishlist" className="rounded-full border border-brand-pinkLight p-1.5">
                   <Heart size={14} fill="currentColor" />
                 </button>
               </div>
@@ -50,5 +51,13 @@ export default function WishlistPage() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function WishlistPage() {
+  return (
+    <Suspense fallback={null}>
+      <WishlistContent />
+    </Suspense>
   );
 }
