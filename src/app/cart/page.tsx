@@ -1,11 +1,12 @@
 "use client";
+import { Suspense } from "react";
 import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
 import { useSearchParams } from "next/navigation";
 import { Trash2 } from "lucide-react";
 import ProductImage from "@/components/ProductImage";
 
-export default function CartPage() {
+function CartContent() {
   const { items, updateQuantity, removeItem, subtotal } = useCart();
   const locale = useSearchParams().get("lang") === "en" ? "en" : "bn";
 
@@ -34,11 +35,11 @@ export default function CartPage() {
               <p className="mt-1 text-sm font-semibold text-brand-pink">৳{item.unitPrice}</p>
             </div>
             <div className="flex items-center rounded-full border border-brand-pinkLight">
-              <button onClick={() => updateQuantity(item.productId, item.quantity - 1, item.variantInfo)} className="px-3 py-1">−</button>
+              <button onClick={() => updateQuantity(item.productId, item.quantity - 1, item.variantInfo)} className="px-3 py-1 text-sm">-</button>
               <span className="w-8 text-center text-sm">{item.quantity}</span>
-              <button onClick={() => updateQuantity(item.productId, item.quantity + 1, item.variantInfo)} className="px-3 py-1">+</button>
+              <button onClick={() => updateQuantity(item.productId, item.quantity + 1, item.variantInfo)} className="px-3 py-1 text-sm">+</button>
             </div>
-            <button onClick={() => removeItem(item.productId, item.variantInfo)} aria-label="Remove" className="text-brand-ink/40 hover:text-brand-pink">
+            <button onClick={() => removeItem(item.productId, item.variantInfo)} aria-label="Remove" className="text-brand-ink/40">
               <Trash2 size={18} />
             </button>
           </div>
@@ -54,5 +55,13 @@ export default function CartPage() {
         {locale === "bn" ? "চেকআউট করুন" : "Proceed to Checkout"}
       </Link>
     </div>
+  );
+}
+
+export default function CartPage() {
+  return (
+    <Suspense fallback={null}>
+      <CartContent />
+    </Suspense>
   );
 }
