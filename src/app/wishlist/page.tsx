@@ -37,7 +37,17 @@ function WishlistContent() {
               <p className="mt-1 font-semibold text-brand-pink">৳{item.price}</p>
               <div className="mt-2 flex gap-2">
                 <button
-                  onClick={() => addItem({ productId: item.productId, slug: item.slug, name: item.name, image: item.image, price: item.price })}
+                  onClick={() =>
+                    addItem({
+                      productId: item.productId,
+                      slug: item.slug,
+                      name: item.name,
+                      image: item.image,
+                      unitPrice: item.price,
+                      quantity: 1,
+                      maxQuantity: 99,
+                    })
+                  }
                   className="flex-1 rounded-full bg-brand-pink px-3 py-1.5 text-xs font-semibold text-white"
                 >
                   {locale === "bn" ? "কার্টে যোগ করুন" : "Add to Cart"}
