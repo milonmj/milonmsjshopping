@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
 import { useSession } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 
 export type WishlistItem = { productId: string; slug: string; name: string; image: string; price: number };
 
@@ -16,11 +15,16 @@ const STORAGE_KEY = "milonmj_wishlist";
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
   const { status } = useSession();
-  const locale = useSearchParams().get("lang") === "en" ? "en" : "bn";
+  const [locale, setLocale] = useState<"bn" | "en">("bn");
   const [items, setItems] = useState<WishlistItem[]>([]);
   const [hydrated, setHydrated] = useState(false);
   const merged = useRef(false);
   const prevStatus = useRef(status);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setLocale(params.get("lang") === "en" ? "en" : "bn");
+  }, []);
 
   useEffect(() => {
     try {
