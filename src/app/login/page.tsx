@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const locale = searchParams.get("lang") === "en" ? "en" : "bn";
@@ -22,7 +22,7 @@ export default function LoginPage() {
     const res = await signIn("credentials", { phone, password, redirect: false, callbackUrl });
     setSubmitting(false);
     if (res?.error) {
-      setError(locale === "bn" ? "ফোন নম্বর বা পাসওয়ার্ড সঠিক নয়।" : "Incorrect phone number or password.");
+      setError(locale === "bn" ? "ফোন নম্বর বা পাসওয়ার্ড সঠিক নয়" : "Incorrect phone number or password.");
       return;
     }
     router.push(callbackUrl);
@@ -71,5 +71,13 @@ export default function LoginPage() {
         </Link>
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }
