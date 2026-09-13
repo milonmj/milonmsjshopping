@@ -1,8 +1,8 @@
-import { siteConfig } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 export const metadata = {
-  title: `শর্তাবলী | ${siteConfig.name}`,
-  description: `${siteConfig.name}-এর ব্যবহারের শর্তাবলী।`,
+  title: `শর্তাবলী | ${SITE_NAME}`,
+  description: `${SITE_NAME}-এর ব্যবহারের শর্তাবলী।`,
 };
 
 export default function TermsPage() {
@@ -11,7 +11,7 @@ export default function TermsPage() {
       <h1 className="text-3xl font-bold text-pink-600 mb-6">শর্তাবলী (Terms & Conditions)</h1>
 
       <p className="mb-4 leading-relaxed">
-        <strong>{siteConfig.name}</strong> ওয়েবসাইট ব্যবহারের মাধ্যমে আপনি নিচের
+        <strong>{SITE_NAME}</strong> ওয়েবসাইট ব্যবহারের মাধ্যমে আপনি নিচের
         শর্তাবলীতে সম্মত হচ্ছেন বলে ধরে নেওয়া হবে।
       </p>
 
