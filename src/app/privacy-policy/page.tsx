@@ -1,8 +1,8 @@
-import { siteConfig } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 export const metadata = {
-  title: `প্রাইভেসি পলিসি | ${siteConfig.name}`,
-  description: `${siteConfig.name}-এর গ্রাহকদের তথ্য সুরক্ষা নীতিমালা।`,
+  title: `প্রাইভেসি পলিসি | ${SITE_NAME}`,
+  description: `${SITE_NAME}-এর গ্রাহকদের তথ্য সুরক্ষা নীতিমালা।`,
 };
 
 export default function PrivacyPolicyPage() {
@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
       <h1 className="text-3xl font-bold text-pink-600 mb-6">প্রাইভেসি পলিসি</h1>
 
       <p className="mb-4 leading-relaxed">
-        <strong>{siteConfig.name}</strong> আপনার ব্যক্তিগত তথ্যের গোপনীয়তা রক্ষায় প্রতিশ্রুতিবদ্ধ।
+        <strong>{SITE_NAME}</strong> আপনার ব্যক্তিগত তথ্যের গোপনীয়তা রক্ষায় প্রতিশ্রুতিবদ্ধ।
         এই পলিসিতে বর্ণনা করা হয়েছে আমরা কীভাবে আপনার তথ্য সংগ্রহ, ব্যবহার এবং সংরক্ষণ করি।
       </p>
 
