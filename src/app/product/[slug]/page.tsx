@@ -1,9 +1,11 @@
+          
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ProductActions from "@/components/ProductActions";
 import ProductImage from "@/components/ProductImage";
 import ShareButtons from "@/components/ShareButtons";
+import ReviewSection from "@/components/ReviewSection";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
 type Props = { params: { slug: string }; searchParams?: { lang?: string } };
@@ -48,7 +50,12 @@ export default async function ProductPage({ params, searchParams }: Props) {
 
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },
-    include: { images: true, variants: true, category: true, reviews: true },
+    include: {
+      images: true,
+      variants: true,
+      category: true,
+      reviews: { include: { user: { select: { name: true } } }, orderBy: { createdAt: "desc" } },
+    },
   });
   if (!product) notFound();
 
@@ -105,19 +112,31 @@ export default async function ProductPage({ params, searchParams }: Props) {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-wide text-brand-pink">{locale === "bn" ? product.category.nameBn : product.category.nameEn}</p>
-          <h1 className="mt-1 font-display text-2xl font-semibold">{locale === "bn" ? product.nameBn : product.nameEn}</h1>
-          {avgRating && <p className="mt-1 text-sm text-brand-ink/60">★ {avgRating} ({product.reviews.length} {locale === "bn" ? "রিভিউ" : "reviews"})</p>}
+          <p className="text-xs uppercase tracking-wide text-brand-pink">
+            {locale === "bn" ? product.category.nameBn : product.category.nameEn}
+          </p>
+          <h1 className="mt-1 font-display text-2xl font-semibold">
+            {locale === "bn" ? product.nameBn : product.nameEn}
+          </h1>
+          {avgRating && (
+            <p className="mt-1 flex items-center gap-2 text-sm text-brand-ink/70">
+              <span className="text-brand-pink">★ {avgRating}</span>
+              <span>({product.reviews.length} {locale === "bn" ? "রিভিউ" : "reviews"})</span>
+            </p>
+          )}
 
           <div className="mt-4 flex items-baseline gap-3">
-            <span className="text-2xl font-bold text-brand-pink">৳{Number(product.discountPrice ?? product.retailPrice)}</span>
-            {product.discountPrice && <span className="text-brand-ink/40 line-through">৳{Number(product.retailPrice)}</span>}
+            <span className="text-2xl font-bold text-brand-ink">
+              ৳{Number(product.discountPrice ?? product.retailPrice)}
+            </span>
+            {product.discountPrice && (
+              <span className="text-sm text-brand-ink/60 line-through">৳{Number(product.retailPrice)}</span>
+            )}
           </div>
 
           {product.wholesalePrice && (
             <p className="mt-1 text-sm text-brand-ink/60">
-              {locale === "bn" ? "পাইকারি মূল্য" : "Wholesale price"}: ৳{Number(product.wholesalePrice)}
-              {product.minWholesaleQty ? ` (min ${product.minWholesaleQty} pcs)` : ""}
+              {locale === "bn" ? "পাইকারি মূল্য" : "Wholesale price"}: ৳{Number(product.wholesalePrice)} (min {product.minWholesaleQty} pcs)
             </p>
           )}
 
@@ -145,6 +164,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
             outOfStock={outOfStock}
             locale={locale}
           />
+
           <p className="mt-2 text-xs text-brand-ink/50">SKU: {product.sku}</p>
 
           <div className="mt-4 border-t border-brand-pinkLight pt-4">
@@ -156,6 +176,12 @@ export default async function ProductPage({ params, searchParams }: Props) {
           </div>
         </div>
       </div>
+
+      <ReviewSection
+        productId={product.id}
+        initialReviews={product.reviews}
+        locale={locale}
+      />
     </div>
   );
 }
