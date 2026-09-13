@@ -1,8 +1,8 @@
-import { siteConfig } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 export const metadata = {
-  title: `সচরাচর জিজ্ঞাসা (FAQ) | ${siteConfig.name}`,
-  description: `${siteConfig.name}-এ অর্ডার, ডেলিভারি ও পেমেন্ট সম্পর্কিত সচরাচর প্রশ্নের উত্তর।`,
+  title: `সচরাচর জিজ্ঞাসা (FAQ) | ${SITE_NAME}`,
+  description: `${SITE_NAME}-এ অর্ডার, ডেলিভারি ও পেমেন্ট সম্পর্কিত সচরাচর প্রশ্নের উত্তর।`,
 };
 
 const faqs = [
