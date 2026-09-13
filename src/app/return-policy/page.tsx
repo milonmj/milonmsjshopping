@@ -1,8 +1,8 @@
-import { siteConfig } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 export const metadata = {
-  title: `রিটার্ন পলিসি | ${siteConfig.name}`,
-  description: `${siteConfig.name}-এ পণ্য ফেরত ও রিফান্ড নীতিমালা।`,
+  title: `রিটার্ন পলিসি | ${SITE_NAME}`,
+  description: `${SITE_NAME}-এ পণ্য ফেরত ও রিফান্ড নীতিমালা।`,
 };
 
 export default function ReturnPolicyPage() {
