@@ -1,8 +1,8 @@
-import { siteConfig } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 export const metadata = {
-  title: `যোগাযোগ | ${siteConfig.name}`,
-  description: `${siteConfig.name}-এর সাথে যোগাযোগ করুন — ফোন, WhatsApp অথবা ঠিকানায়।`,
+  title: `যোগাযোগ | ${SITE_NAME}`,
+  description: `${SITE_NAME}-এর সাথে যোগাযোগ করুন — ফোন, WhatsApp অথবা ঠিকানায়।`,
 };
 
 export default function ContactPage() {
