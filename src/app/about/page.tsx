@@ -1,8 +1,8 @@
-import { siteConfig } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 
 export const metadata = {
-  title: `আমাদের সম্পর্কে | ${siteConfig.name}`,
-  description: `${siteConfig.name} সম্পর্কে জানুন — আমরা কারা, কী বিক্রি করি এবং কেন আমাদের বেছে নেবেন।`,
+  title: `আমাদের সম্পর্কে | ${SITE_NAME}`,
+  description: `${SITE_NAME} সম্পর্কে জানুন — আমরা কারা, কী বিক্রি করি এবং কেন আমাদের বেছে নেবেন।`,
 };
 
 export default function AboutPage() {
@@ -11,7 +11,7 @@ export default function AboutPage() {
       <h1 className="text-3xl font-bold text-pink-600 mb-6">আমাদের সম্পর্কে</h1>
 
       <p className="mb-4 leading-relaxed">
-        <strong>{siteConfig.name}</strong> একটি বিশ্বস্ত অনলাইন শপিং প্ল্যাটফর্ম, যেখানে
+        <strong>{SITE_NAME}</strong> একটি বিশ্বস্ত অনলাইন শপিং প্ল্যাটফর্ম, যেখানে
         আপনি পাবেন পোশাক, কসমেটিক্স, জুতা এবং ইলেকট্রনিক পণ্য — সব এক জায়গায়, সাশ্রয়ী দামে।
       </p>
 
