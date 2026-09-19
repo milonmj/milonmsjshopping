@@ -91,9 +91,9 @@ export default function ProductForm({ categories, initial }: { categories: Categ
       }
       router.push("/admin/products");
       router.refresh();
-    } catch {
-      setError("Something went wrong. Please try again.");
-      setSubmitting(false);
+    } catch (err: any) {
+    setError("DEBUG: " + (err?.message || String(err)));
+    setSubmitting(false);
     }
   }
 
