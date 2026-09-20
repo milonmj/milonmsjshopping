@@ -163,6 +163,8 @@ const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
             unitPrice: i.unitPrice,
             variantInfo: i.variantInfo,
           })),
+          couponId: appliedCoupon?.couponId || null,
+          discountAmount: appliedCoupon?.discountAmount || 0,
         }),
       });
       const data = await res.json();
