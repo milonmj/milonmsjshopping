@@ -303,6 +303,45 @@ const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
             </div>
           ))}
         </div>
+        <div className="mt-4 border-t border-brand-pinkLight pt-4">
+          {appliedCoupon ? (
+            <div className="flex items-center justify-between rounded-lg bg-brand-pink/10 px-3 py-2 text-sm">
+              <span className="font-medium text-brand-pink">
+                {locale === "bn" ? "কুপন প্রয়োগ হয়েছে" : "Coupon applied"}: {appliedCoupon.code}
+              </span>
+              <button
+                type="button"
+                onClick={handleRemoveCoupon}
+                className="text-xs text-brand-ink/60 underline"
+              >
+                {locale === "bn" ? "সরান" : "Remove"}
+              </button>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder={locale === "bn" ? "কুপন কোড" : "Coupon code"}
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                className="flex-1 rounded-lg border border-brand-pinkLight px-3 py-2 text-sm"
+              />
+              <button
+                type="button"
+                disabled={couponLoading}
+                onClick={handleApplyCoupon}
+                className="rounded-lg bg-brand-pink px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+              >
+                {couponLoading
+                  ? (locale === "bn" ? "যাচাই হচ্ছে..." : "Checking...")
+                  : (locale === "bn" ? "প্রয়োগ করুন" : "Apply")}
+              </button>
+            </div>
+          )}
+          {couponError && (
+            <p className="mt-1 text-xs text-red-600">{couponError}</p>
+          )}
+        </div>
         <div className="mt-4 space-y-2 border-t border-brand-pinkLight pt-4 text-sm">
           <div className="flex justify-between"><span>{locale === "bn" ? "সাবটোটাল" : "Subtotal"}</span><span>৳{subtotal}</span></div>
           <div className="flex justify-between"><span>{locale === "bn" ? "ডেলিভারি চার্জ" : "Delivery Charge"}</span><span>৳{deliveryCharge}</span></div>
