@@ -42,7 +42,14 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<(typeof PAYMENT_METHODS)[number]["value"]>("COD");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+const [couponCode, setCouponCode] = useState("");
+const [couponLoading, setCouponLoading] = useState(false);
+const [couponError, setCouponError] = useState<string | null>(null);
+const [appliedCoupon, setAppliedCoupon] = useState<{
+  couponId: string;
+  code: string;
+  discountAmount: number;
+} | null>(null);
   const [addresses, setAddresses] = useState<SavedAddress[]>([]);
   const [selectedAddressId, setSelectedAddressId] = useState<string>("new");
   const [saveAddress, setSaveAddress] = useState(false);
