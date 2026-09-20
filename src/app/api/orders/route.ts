@@ -21,7 +21,6 @@ export async function POST(req: NextRequest) {
       deliveryDistrict,
       deliveryArea,
       deliveryAddress,
-      deliveryPhone,
       paymentMethod,
       deliveryCharge,
       couponId,
@@ -60,7 +59,8 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const totalAmount = subtotal + (deliveryCharge || 0) - (discountAmount || 0);
+    const charge = deliveryCharge ?? 0;
+    const totalAmount = subtotal + charge - (discountAmount || 0);
 
     const order = await prisma.order.create({
       data: {
@@ -71,9 +71,9 @@ export async function POST(req: NextRequest) {
         deliveryDistrict,
         deliveryArea,
         deliveryAddress,
-        deliveryPhone,
+        deliveryPhone: guestPhone,
         paymentMethod,
-        deliveryCharge: deliveryCharge || 0,
+        deliveryCharge: charge,
         couponId: couponId || null,
         discountAmount: discountAmount || 0,
         subtotal,
