@@ -92,7 +92,7 @@ export default function ProductForm({ categories, initial }: { categories: Categ
       router.push("/admin/products");
       router.refresh();
     } catch (err: any) {
-    setError("DEBUG: " + (err?.message || String(err)));
+    setError("Something went wrong. Please try again.");
     setSubmitting(false);
     }
   }
