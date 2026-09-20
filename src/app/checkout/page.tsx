@@ -101,7 +101,46 @@ const [appliedCoupon, setAppliedCoupon] = useState<{
         deliveryAddress: addr.addressLine,
       });
     }
+    async function handleApplyCoupon() {
+    if (!couponCode.trim()) return;
+    setCouponLoading(true);
+    setCouponError(null);
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: couponCode.trim(), subtotal }),
+      });
+      const data = await res.json();
+      if (!data.valid) {
+        setCouponError(
+          data.message ||
+            (locale === "bn" ? "কুপন কোডটি সঠিক নয়" : "Invalid coupon code")
+        );
+        setAppliedCoupon(null);
+        return;
+      }
+      setAppliedCoupon({
+        couponId: data.couponId,
+        code: data.code,
+        discountAmount: data.discountAmount,
+      });
+    } catch {
+      setCouponError(
+        locale === "bn" ? "কুপন যাচাই করতে সমস্যা হয়েছে" : "Could not validate coupon"
+      );
+      setAppliedCoupon(null);
+    } finally {
+      setCouponLoading(false);
+    }
   }
+
+  function handleRemoveCoupon() {
+    setAppliedCoupon(null);
+    setCouponCode("");
+    setCouponError(null);
+  }
+  
 
   const deliveryCharge = form.deliveryDistrict.trim().toLowerCase() === "dhaka" ? 70 : 130;
   const total = subtotal + (items.length ? deliveryCharge : 0);
