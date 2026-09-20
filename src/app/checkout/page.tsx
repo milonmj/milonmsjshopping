@@ -344,6 +344,12 @@ const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
         </div>
         <div className="mt-4 space-y-2 border-t border-brand-pinkLight pt-4 text-sm">
           <div className="flex justify-between"><span>{locale === "bn" ? "সাবটোটাল" : "Subtotal"}</span><span>৳{subtotal}</span></div>
+          {appliedCoupon && (
+                <div className="flex justify-between text-brand-pink">
+                  <span>{locale === "bn" ? "ছাড়" : "Discount"}</span>
+                  <span>-৳{discountAmount}</span>
+                </div>
+              )}
           <div className="flex justify-between"><span>{locale === "bn" ? "ডেলিভারি চার্জ" : "Delivery Charge"}</span><span>৳{deliveryCharge}</span></div>
           <div className="flex justify-between text-base font-bold text-brand-pink"><span>{locale === "bn" ? "মোট" : "Total"}</span><span>৳{total}</span></div>
         </div>
