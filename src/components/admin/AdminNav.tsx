@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, Package, FolderTree, ClipboardList, Users, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, FolderTree, ClipboardList, Users, LogOut, Ticket } from "lucide-react";
 import { SITE_NAME } from "@/lib/site-config";
 
 const LINKS = [
@@ -10,6 +10,7 @@ const LINKS = [
   { href: "/admin/products", icon: Package, bn: "পণ্য", en: "Products" },
   { href: "/admin/categories", icon: FolderTree, bn: "ক্যাটেগরি", en: "Categories" },
   { href: "/admin/orders", icon: ClipboardList, bn: "অর্ডার", en: "Orders" },
+  { href: "/admin/coupons", icon: Ticket, bn: "কুপন", en: "Coupons" },
   { href: "/admin/customers", icon: Users, bn: "কাস্টমার", en: "Customers" },
 ] as const;
 
