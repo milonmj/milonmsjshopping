@@ -101,6 +101,7 @@ const [appliedCoupon, setAppliedCoupon] = useState<{
         deliveryAddress: addr.addressLine,
       });
     }
+  }
     async function handleApplyCoupon() {
     if (!couponCode.trim()) return;
     setCouponLoading(true);
