@@ -143,7 +143,7 @@ export default function CheckoutPage() {
       }
 
       clearCart();
-      router.push(`/order-confirmation/${data.orderNumber}`);
+      router.push(`/order-confirmation/${data.order.orderNumber}`);
     } catch {
       setError(locale === "bn" ? "অর্ডার করা যায়নি। আবার চেষ্টা করুন।" : "Could not place the order. Please try again.");
       setSubmitting(false);
