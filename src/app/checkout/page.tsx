@@ -143,7 +143,8 @@ const [appliedCoupon, setAppliedCoupon] = useState<{
   
 
   const deliveryCharge = form.deliveryDistrict.trim().toLowerCase() === "dhaka" ? 70 : 130;
-  const total = subtotal + (items.length ? deliveryCharge : 0);
+  const discountAmount = appliedCoupon?.discountAmount || 0;
+const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
