@@ -164,7 +164,8 @@ const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
             quantity: i.quantity,
             unitPrice: i.unitPrice,
             variantInfo: i.variantInfo,
-          })),
+         
+          isWholesale: !!(i.minWholesaleQty && i.quantity >= i.minWholesaleQty),})),
           couponId: appliedCoupon?.couponId || null,
           discountAmount: appliedCoupon?.discountAmount || 0,
         }),
