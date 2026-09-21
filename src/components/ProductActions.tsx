@@ -11,6 +11,8 @@ type Props = {
   name: string;
   image: string;
   unitPrice: number;
+  wholesalePrice?: number;
+    minWholesaleQty?: number;
   maxQuantity: number;
   outOfStock: boolean;
   locale: "bn" | "en";
