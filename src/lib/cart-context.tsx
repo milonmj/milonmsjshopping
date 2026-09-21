@@ -72,11 +72,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   function updateQuantity(productId: string, quantity: number, variantInfo?: string) {
     setItems((prev) =>
-      prev.map((i) =>
-        i.productId === productId && i.variantInfo === variantInfo
-          ? { ...i, quantity: Math.max(1, Math.min(quantity, i.maxQuantity)) }
-          : i
-      )
+      prev.map((i) => {
+        if (i.productId !== productId || i.variantInfo !== variantInfo) return i;
+        const q = Math.max(1, Math.min(quantity, i.maxQuantity));
+        return { ...i, quantity: q, unitPrice: priceFor(i, q) };
+      })
     );
   }
 
