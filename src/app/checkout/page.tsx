@@ -158,6 +158,7 @@ const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
         body: JSON.stringify({
           ...form,
           paymentMethod,
+          deliveryCharge,
           items: items.map((i) => ({
             productId: i.productId,
             quantity: i.quantity,
