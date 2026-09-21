@@ -44,7 +44,11 @@ export default function ProductActions({ productId, slug, name, image, unitPrice
           <button onClick={() => setQty((q) => Math.min(maxQuantity, q + 1))} className="px-3 py-1 text-brand-ink/60">+</button>
         </div>
       </div>
-
+{wholesalePrice && minWholesaleQty && qty >= minWholesaleQty && (
+        <p className="mb-2 text-xs font-medium text-brand-pink">
+          {locale === "bn" ? `পাইকারি মূল্য প্রয়োগ হয়েছে: ৳${wholesalePrice}` : `Wholesale price applied: ৳${wholesalePrice}`}
+        </p>
+      )}
       <div className="flex gap-3">
         <button
           disabled={outOfStock}
