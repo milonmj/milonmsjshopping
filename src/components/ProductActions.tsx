@@ -18,7 +18,7 @@ type Props = {
   locale: "bn" | "en";
 };
 
-export default function ProductActions({ productId, slug, name, image, unitPrice, maxQuantity, outOfStock, locale }: Props) {
+export default function ProductActions({ productId, slug, name, image, unitPrice, wholesalePrice, minWholesaleQty, maxQuantity, outOfStock, locale }: Props) {
   const router = useRouter();
   const { addItem } = useCart();
   const { toggle, isWishlisted } = useWishlist();
