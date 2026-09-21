@@ -162,6 +162,8 @@ export default async function ProductPage({ params, searchParams }: Props) {
             unitPrice={Number(product.discountPrice ?? product.retailPrice)}
             maxQuantity={product.quantity}
             outOfStock={outOfStock}
+            wholesalePrice={product.wholesalePrice ? Number(product.wholesalePrice) : undefined}
+              minWholesaleQty={product.minWholesaleQty ?? undefined}
             locale={locale}
           />
 
