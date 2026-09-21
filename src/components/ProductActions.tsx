@@ -26,7 +26,7 @@ export default function ProductActions({ productId, slug, name, image, unitPrice
   const wishlisted = isWishlisted(productId);
 
   function handleAddToCart() {
-    addItem({ productId, slug, name, image, unitPrice, quantity: qty, maxQuantity });
+    addItem({ productId, slug, name, image, unitPrice, quantity: qty, maxQuantity , wholesalePrice, minWholesaleQty });
   }
 
   function handleBuyNow() {
