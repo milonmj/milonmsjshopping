@@ -10,6 +10,8 @@ export type CartItem = {
   quantity: number;
   variantInfo?: string;
   maxQuantity: number;
+  wholesalePrice?: number;
+  minWholesaleQty?: number;
 };
 
 type CartContextType = {
