@@ -45,15 +45,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (hydrated) localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items, hydrated]);
 
+  function priceFor(item: { unitPrice: number; wholesalePrice?: number; minWholesaleQty?: number }, quantity: number) {
+    if (item.wholesalePrice && item.minWholesaleQty && quantity >= item.minWholesaleQty) {
+      return item.wholesalePrice;
+    }
+    return item.unitPrice;
+  }
+
   function addItem(newItem: CartItem) {
     setItems((prev) => {
       const existing = prev.find((i) => i.productId === newItem.productId && i.variantInfo === newItem.variantInfo);
       if (existing) {
-        return prev.map((i) =>
-          i === existing ? { ...i, quantity: Math.min(i.quantity + newItem.quantity, i.maxQuantity) } : i
-        );
+        return prev.map((i) => {
+          if (i !== existing) return i;
+          const quantity = Math.min(i.quantity + newItem.quantity, i.maxQuantity);
+          return { ...i, quantity, unitPrice: priceFor(i, quantity) };
+        });
       }
-      return [...prev, newItem];
+      return [...prev, { ...newItem, unitPrice: priceFor(newItem, newItem.quantity) }];
     });
   }
 
