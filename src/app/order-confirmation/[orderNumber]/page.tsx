@@ -46,6 +46,9 @@ export default async function OrderConfirmationPage({
 
         <div className="mt-4 space-y-1 border-t border-brand-pinkLight pt-4 text-sm">
           <div className="flex justify-between"><span>{locale === "bn" ? "সাবটোটাল" : "Subtotal"}</span><span>৳{Number(order.subtotal)}</span></div>
+          {Number(order.discountAmount) > 0 && (
+                <div className="flex justify-between text-brand-pink"><span>{locale === "bn" ? "ছাড়" : "Discount"}</span><span>-৳{Number(order.discountAmount)}</span></div>
+              )}
           <div className="flex justify-between"><span>{locale === "bn" ? "ডেলিভারি চার্জ" : "Delivery"}</span><span>৳{Number(order.deliveryCharge)}</span></div>
           <div className="flex justify-between font-bold text-brand-pink"><span>{locale === "bn" ? "মোট" : "Total"}</span><span>৳{Number(order.totalAmount)}</span></div>
         </div>
