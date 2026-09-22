@@ -17,7 +17,11 @@ export default async function OrderConfirmationPage({
     include: { items: { include: { product: true } } },
   });
   if (!order) notFound();
-
+const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+  const waMessage = encodeURIComponent(
+    `Order ${order.orderNumber}\nTotal: ৳${order.totalAmount}\nI'd like to confirm my order.`
+  );
+  const waHref = waNumber ? `https://wa.me/${waNumber}?text=${waMessage}` : null;
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 text-center">
       <CheckCircle2 className="mx-auto text-brand-pink" size={48} />
