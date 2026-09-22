@@ -43,20 +43,24 @@ export async function POST(req: NextRequest) {
       });
       if (!product) continue;
 
-      const price =
-        item.isWholesale && product.wholesalePrice
+      const isWholesale = !!(
+          product.wholesalePrice &&
+          product.minWholesaleQty &&
+          item.quantity >= product.minWholesaleQty
+        );
+        const price = isWholesale
           ? Number(product.wholesalePrice)
           : Number(product.discountPrice || product.retailPrice);
 
-      subtotal += price * item.quantity;
+        subtotal += price * item.quantity;
 
-      orderItemsData.push({
-        productId: item.productId,
-        variantInfo: item.variantInfo || null,
-        quantity: item.quantity,
-        unitPrice: price,
-        isWholesale: item.isWholesale || false,
-      });
+        orderItemsData.push({
+          productId: item.productId,
+          variantInfo: item.variantInfo || null,
+          quantity: item.quantity,
+          unitPrice: price,
+          isWholesale,
+        });
     }
 
     const charge = deliveryCharge ?? 0;
