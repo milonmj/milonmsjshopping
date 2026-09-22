@@ -62,7 +62,23 @@ export async function POST(req: NextRequest) {
           isWholesale,
         });
     }
-
+let discountAmount = 0;
+      if (couponId) {
+        const coupon = await prisma.coupon.findUnique({ where: { id: couponId } });
+        const now = new Date();
+        if (
+          coupon &&
+          coupon.isActive &&
+          now >= coupon.validFrom &&
+          now <= coupon.validTo &&
+          (!coupon.minOrderAmt || subtotal >= Number(coupon.minOrderAmt))
+        ) {
+          discountAmount = coupon.percentOff
+            ? (subtotal * coupon.percentOff) / 100
+            : Number(coupon.amountOff || 0);
+          if (discountAmount > subtotal) discountAmount = subtotal;
+        }
+      }
     const charge = deliveryDistrict?.trim().toLowerCase() === "dhaka" ? 70 : 130;
     const totalAmount = subtotal + charge - (discountAmount || 0);
 
