@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
         });
     }
 
-    const charge = deliveryCharge ?? 0;
+    const charge = deliveryDistrict?.trim().toLowerCase() === "dhaka" ? 70 : 130;
     const totalAmount = subtotal + charge - (discountAmount || 0);
 
     const order = await prisma.order.create({
