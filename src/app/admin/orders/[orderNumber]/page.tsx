@@ -52,7 +52,18 @@ export default async function AdminOrderDetailPage({
             <br />
             {order.deliveryAddress}, {order.deliveryArea}, {order.deliveryDistrict}
           </p>
-
+{order.deliveryPhone && (
+                <a
+                  href={`https://wa.me/${order.deliveryPhone.replace(/^0/, "880")}?text=${encodeURIComponent(
+                    `Hi ${order.guestName ?? ""}, about your order ${order.orderNumber} (${order.status}).`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block rounded-full bg-[#25D366] px-4 py-2 text-xs font-semibold text-white"
+                >
+                  {locale === "bn" ? "হোয়াটসঅ্যাপে কাস্টমারকে মেসেজ করুন" : "Message customer on WhatsApp"}
+                </a>
+              )}
           <div className="mt-4 divide-y divide-brand-pinkLight border-t border-brand-pinkLight pt-4">
             {order.items.map((item) => (
               <div key={item.id} className="flex justify-between py-2 text-sm">
