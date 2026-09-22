@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       paymentMethod,
       deliveryCharge,
       couponId,
-      discountAmount,
+      
     } = body;
 
     if (!items || items.length === 0) {
