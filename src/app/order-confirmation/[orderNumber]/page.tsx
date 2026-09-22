@@ -65,6 +65,16 @@ const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
       <Link href="/" className="mt-6 inline-block rounded-full bg-brand-pink px-6 py-3 text-sm font-semibold text-white">
         {locale === "bn" ? "কেনাকাটা চালিয়ে যান" : "Continue Shopping"}
       </Link>
+      {waHref && (
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white"
+          >
+            {locale === "bn" ? "হোয়াটসঅ্যাপে অর্ডার নিশ্চিত করুন" : "Confirm via WhatsApp"}
+          </a>
+        )}
     </div>
   );
 }
