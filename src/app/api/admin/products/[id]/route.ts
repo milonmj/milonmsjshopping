@@ -77,7 +77,7 @@ export async function PATCH(
       where: { id: params.id },
       data,
     });
-
+    await logAdminActivity(session, "UPDATE_PRODUCT", "Product", product.id, product.nameEn);
     return NextResponse.json({ ok: true, product });
   } catch (err: any) {
     return NextResponse.json(
