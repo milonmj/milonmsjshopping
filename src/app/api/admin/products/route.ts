@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
+import { logAdminActivity } from "@/lib/log-admin-activity";
 
 export async function GET() {
   const session = await requireAdmin();
