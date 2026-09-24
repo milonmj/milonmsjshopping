@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 import Providers from "@/components/Providers";
 import { prisma } from "@/lib/prisma";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
     google: "Vq0JscILAibRCtubOqoEpaIvX1r5NFIZTWOS__gHDas",
   },
 };
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   let categories: { slug: string; nameBn: string; nameEn: string }[] = [];
@@ -29,6 +32,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="bn">
       <body className="font-body text-brand-ink antialiased">
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
         <Providers categories={categories}>{children}</Providers>
       </body>
     </html>
