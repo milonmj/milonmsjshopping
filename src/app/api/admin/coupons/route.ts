@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
         isActive: body.isActive ?? true,
       },
     });
+    await logAdminActivity(session, "CREATE_COUPON", "Coupon", coupon.id, coupon.code);
     return NextResponse.json({ ok: true, coupon });
   } catch (err: any) {
     return NextResponse.json(
