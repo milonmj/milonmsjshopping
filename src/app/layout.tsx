@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description:
     `${SITE_NAME} — retail & wholesale clothing, cosmetics, shoes and electric items, delivered across Bangladesh.`,
   metadataBase: new URL(SITE_URL),
+  verification: {
+    google: "Vq0JscILAibRCtubOqoEpaIvX1r5NFIZTWOS__gHDas",
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
