@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
-
+import { logAdminActivity } from "@/lib/log-admin-activity";
 const LOGIN_LIMIT = 8; // attempts
 const LOGIN_WINDOW_MS = 10 * 60 * 1000; // per 10 minutes, per IP+phone
 
