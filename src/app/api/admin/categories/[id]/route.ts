@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
-
+import { logAdminActivity } from "@/lib/log-admin-activity";
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -23,6 +23,7 @@ export async function PATCH(
       where: { id: params.id },
       data,
     });
+    }); যে
     return NextResponse.json({ ok: true, category });
   } catch (err: any) {
     return NextResponse.json(
