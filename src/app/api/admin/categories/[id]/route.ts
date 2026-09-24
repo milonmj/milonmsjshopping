@@ -23,7 +23,7 @@ export async function PATCH(
       where: { id: params.id },
       data,
     });
-    });
+  });
     await logAdminActivity(session, "UPDATE_CATEGORY", "Category", category.id, category.nameEn);
   return NextResponse.json({ ok: true, category });
   } catch (err: any) {
