@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+
+const ORDER_LIMIT = 20;
+const ORDER_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 
 function generateOrderNumber() {
   const now = Date.now().toString(36).toUpperCase();
@@ -11,6 +15,16 @@ function generateOrderNumber() {
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
+
+  const ip = getClientIp(req.headers);
+  const rl = checkRateLimit(`order:${ip}`, ORDER_LIMIT, ORDER_WINDOW_MS);
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { ok: false, error: "খুব বেশি অর্ডার করার চেষ্টা হয়েছে। কিছুক্ষণ পর আবার চেষ্টা করুন।" },
+      { status: 429 }
+    );
+  }
+
   const body = await req.json();
 
   try {
@@ -111,4 +125,4 @@ let discountAmount = 0;
       { status: 500 }
     );
   }
-}
+  }
