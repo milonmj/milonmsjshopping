@@ -27,6 +27,7 @@ export async function PATCH(
         isActive: body.isActive !== undefined ? body.isActive : undefined,
       },
     });
+    await logAdminActivity(session, "UPDATE_COUPON", "Coupon", coupon.id, coupon.code);
     return NextResponse.json({ ok: true, coupon });
   } catch (err: any) {
     return NextResponse.json(
