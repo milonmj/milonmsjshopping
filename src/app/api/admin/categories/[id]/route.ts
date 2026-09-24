@@ -24,7 +24,8 @@ export async function PATCH(
       data,
     });
     }); যে
-    return NextResponse.json({ ok: true, category });
+    await logAdminActivity(session, "UPDATE_CATEGORY", "Category", category.id, category.nameEn);
+  return NextResponse.json({ ok: true, category });
   } catch (err: any) {
     return NextResponse.json(
       { ok: false, error: err?.message || "Could not update category." },
