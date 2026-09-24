@@ -41,6 +41,7 @@ export async function PATCH(
       data,
     });
 
+    await logAdminActivity(session, "UPDATE_ORDER", "Order", order.id, order.orderNumber);
     return NextResponse.json({ ok: true, order });
   } catch (err: any) {
     return NextResponse.json(
