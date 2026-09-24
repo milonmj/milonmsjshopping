@@ -46,6 +46,7 @@ export async function DELETE(
 
   try {
     await prisma.coupon.delete({ where: { id: params.id } });
+    await logAdminActivity(session, "DELETE_COUPON", "Coupon", params.id);
     return NextResponse.json({ ok: true });
   } catch (err: any) {
     return NextResponse.json(
