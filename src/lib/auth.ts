@@ -66,6 +66,7 @@ export const authOptions: NextAuthOptions = {
 
         if (user.role !== "ADMIN") return null;
 
+        await logAdminActivity({ user }, "ADMIN_LOGIN", "Admin", user.id, user.name);
         return {
           id: user.id,
           name: user.name,
