@@ -46,6 +46,7 @@ export async function DELETE(
       where: { id: params.id },
       data: { isActive: false },
     });
+    await logAdminActivity(session, "DEACTIVATE_CATEGORY", "Category", params.id);
     return NextResponse.json({ ok: true });
   } catch (err: any) {
     return NextResponse.json(
