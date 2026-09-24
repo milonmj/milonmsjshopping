@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
         isActive: body.isActive ?? true,
       },
     });
+    await logAdminActivity(session, "CREATE_CATEGORY", "Category", category.id, category.nameEn);
     return NextResponse.json({ ok: true, category });
   } catch (err: any) {
     return NextResponse.json(
