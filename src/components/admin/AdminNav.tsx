@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, Package, FolderTree, ClipboardList, Users, LogOut, Ticket } from "lucide-react";
+import { LayoutDashboard, Package, FolderTree, ClipboardList, Users, LogOut, Ticket, History } from "lucide-react";
 import { SITE_NAME } from "@/lib/site-config";
 
 const LINKS = [
