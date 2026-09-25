@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/admin/orders", icon: ClipboardList, bn: "অর্ডার", en: "Orders" },
   { href: "/admin/coupons", icon: Ticket, bn: "কুপন", en: "Coupons" },
   { href: "/admin/customers", icon: Users, bn: "কাস্টমার", en: "Customers" },
+  { href: "/admin/activity-log", icon: History, bn: "অ্যাক্টিভিটি লগ", en: "Activity Log" },
 ] as const;
 
 export default function AdminNav() {
