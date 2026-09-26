@@ -17,6 +17,7 @@ export default async function WholesalePage({
       minWholesaleQty: { not: null },
     },
     orderBy: { createdAt: "desc" },
+    include: { images: true },
   });
 
   return (
