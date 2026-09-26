@@ -29,20 +29,27 @@ export default function AdminNav() {
 
       <nav className="space-y-1">
         {LINKS.map(({ href, icon: Icon, bn, en }) => {
-          const active = href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
-          return (
-            <Link
-              key={href}
-              href={href}
-              className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium ${
-                active ? "bg-brand-pink text-white" : "text-brand-ink/70 hover:bg-brand-pinkLight/50"
-              }`}
-            >
-              <Icon size={16} />
-              {locale === "bn" ? bn : en}
-            </Link>
-          );
-        })}
+            const active = href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
+            const linkClassName = `flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium ${
+              active ? "bg-brand-pink text-white" : "text-brand-ink/70 hover:bg-brand-pinkLight/50"
+            }`;
+
+            if (href.startsWith("/api/")) {
+              return (
+                <a key={href} href={href} className={linkClassName}>
+                  <Icon size={16} />
+                  {locale === "bn" ? bn : en}
+                </a>
+              );
+            }
+
+            return (
+              <Link key={href} href={href} className={linkClassName}>
+                <Icon size={16} />
+                {locale === "bn" ? bn : en}
+              </Link>
+            );
+          })}
       </nav>
 
       <button
