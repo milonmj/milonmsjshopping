@@ -39,7 +39,7 @@ export default async function WholesalePage({
           >
             <div className="aspect-square overflow-hidden rounded-lg bg-brand-pinkLight/20">
               <ProductImage
-                src={(p as any).images?.[0] ?? null}
+                src={p.image}
                 alt={locale === "bn" ? p.nameBn : p.nameEn}
                 className="h-full w-full object-cover"
               />
