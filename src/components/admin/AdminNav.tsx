@@ -13,6 +13,7 @@ const LINKS = [
   { href: "/admin/coupons", icon: Ticket, bn: "কুপন", en: "Coupons" },
   { href: "/admin/customers", icon: Users, bn: "কাস্টমার", en: "Customers" },
   { href: "/admin/activity-log", icon: History, bn: "অ্যাক্টিভিটি লগ", en: "Activity Log" },
+  { href: "/api/admin/backup-export", icon: Download, bn: "ব্যাকআপ ডাউনলোড", en: "Download Backup" },
 ] as const;
 
 export default function AdminNav() {
