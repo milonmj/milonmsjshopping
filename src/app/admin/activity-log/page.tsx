@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 
-// Admin activity log viewer (Stage 16 #1) — lists AdminActivityLog entries, newest first
 export default async function AdminActivityLogPage({
   searchParams,
 }: {
@@ -27,4 +26,38 @@ export default async function AdminActivityLogPage({
               <th className="p-3 font-medium">{locale === "bn" ? "অ্যাডমিন" : "Admin"}</th>
               <th className="p-3 font-medium">{locale === "bn" ? "অ্যাকশন" : "Action"}</th>
               <th className="p-3 font-medium">{locale === "bn" ? "টার্গেট" : "Target"}</th>
-              <th className="p-3 font-medium">{locale === "bn" ? "বিস্তারিত" : "Det
+              <th className="p-3 font-medium">{locale === "bn" ? "বিস্তারিত" : "Details"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {logs.map((log) => (
+              <tr
+                key={log.id}
+                className="border-b border-brand-pinkLight/60 last:border-0 hover:bg-brand-pinkLight/10"
+              >
+                <td className="p-3 whitespace-nowrap text-brand-ink/60">
+                  {log.createdAt.toLocaleString(locale === "bn" ? "bn-BD" : "en-US")}
+                </td>
+                <td className="p-3 font-medium">{log.adminName}</td>
+                <td className="p-3">{log.action}</td>
+                <td className="p-3 text-brand-ink/60">
+                  {log.targetType
+                    ? `${log.targetType}${log.targetId ? ` #${log.targetId}` : ""}`
+                    : "—"}
+                </td>
+                <td className="p-3 text-brand-ink/60">{log.details ?? "—"}</td>
+              </tr>
+            ))}
+            {logs.length === 0 && (
+              <tr>
+                <td colSpan={5} className="p-6 text-center text-brand-ink/50">
+                  {locale === "bn" ? "কোনো অ্যাক্টিভিটি পাওয়া যায়নি।" : "No activity found."}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
