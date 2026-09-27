@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-
+export const revalidate = 0;
 export default async function ProductPage({ params, searchParams }: Props) {
   const locale = searchParams?.lang === "en" ? "en" : "bn";
 
