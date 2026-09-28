@@ -33,7 +33,7 @@ export default function ContactPage() {
 
         <div>
           <h2 className="font-semibold text-lg">✉️ ইমেইল</h2>
-          <p>info@milonmjshopping.com (পরিবর্তনযোগ্য)</p>
+          <p>milonshathi15@gmail.com</div>
         </div>
       </div>
     </main>
