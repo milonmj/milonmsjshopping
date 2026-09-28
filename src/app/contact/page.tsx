@@ -27,9 +27,6 @@ export default function ContactPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-lg">📍 ঠিকানা</h2>
-          <p>ঢাকা, বাংলাদেশ (পরিবর্তনযোগ্য)</p>
-        </div>
 
         <div>
           <h2 className="font-semibold text-lg">🕒 কার্যসময়</h2>
