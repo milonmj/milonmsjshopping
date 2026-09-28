@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 import Providers from "@/components/Providers";
+import Analytics from "@/components/Analytics";
 import { prisma } from "@/lib/prisma";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
