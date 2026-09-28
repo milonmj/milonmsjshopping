@@ -18,7 +18,7 @@ export default function ContactPage() {
       <div className="space-y-4">
         <div>
           <h2 className="font-semibold text-lg">📞 ফোন</h2>
-          <p>০১৭XXXXXXXX (পরিবর্তনযোগ্য)</p>
+          <p>01766034080/p>
         </div>
 
         <div>
