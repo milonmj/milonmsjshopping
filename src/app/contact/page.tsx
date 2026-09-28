@@ -27,7 +27,6 @@ export default function ContactPage() {
         </div>
 
         <div>
-        <div>
           <h2 className="font-semibold text-lg">🕒 কার্যসময়</h2>
           <p>প্রতিদিন সকাল ৯টা - রাত ৯টা</p>
         </div>
