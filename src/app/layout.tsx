@@ -48,6 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </Script>
           </>
         )}
+        <Analytics />
         <Providers categories={categories}>{children}</Providers>
       </body>
     </html>
