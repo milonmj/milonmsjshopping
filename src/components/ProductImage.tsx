@@ -19,5 +19,6 @@ export default function ProductImage({ src, alt, className = "" }: Props) {
     );
   }
 
-  return <img src={src} alt={alt} className={className} onError={() => setFailed(true)} />;
+    const optimized = src.replace(/\/upload\/(v\d+\/)/, "/upload/f_auto,q_auto,w_800/$1");
+  return <img src={optimized} alt={alt} className={className} onError={() => setFailed(true)} />;
 }
