@@ -87,6 +87,7 @@ export default async function AdminProductsPage({
     <span className="ml-1 text-xs">{p.quantity <= 0 ? "(শেষ)" : "(কম)"}</span>
   )}
 </td>
+                <td className="p-3">
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${p.isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
                     {p.isActive ? (locale === "bn" ? "সক্রিয়" : "Active") : (locale === "bn" ? "নিষ্ক্রিয়" : "Inactive")}
                   </span>
