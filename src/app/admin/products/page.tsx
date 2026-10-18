@@ -80,7 +80,6 @@ export default async function AdminProductsPage({
                 <td className="p-3 text-brand-ink/60">{p.sku}</td>
                 <td className="p-3 text-brand-ink/60">{locale === "bn" ? p.category.nameBn : p.category.nameEn}</td>
                 <td className="p-3">৳{Number(p.discountPrice ?? p.retailPrice)}</td>
-                <td className="p-3">{p.quantity}</td>
                 <td className={`p-3 ${p.quantity <= p.lowStockAlertAt ? "font-semibold text-red-600" : ""}`}>
   {p.quantity}
   {p.quantity <= p.lowStockAlertAt && (
