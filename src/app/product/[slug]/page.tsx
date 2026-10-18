@@ -59,7 +59,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
   });
   if (!product) notFound();
 
-  const outOfStock = product.stockStatus === "OUT_OF_STOCK";
+  const outOfStock = product.quantity <= 0 || product.stockStatus === "OUT_OF_STOCK";
   const avgRating = product.reviews.length
     ? (product.reviews.reduce((s, r) => s + r.rating, 0) / product.reviews.length).toFixed(1)
     : null;
