@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     }
 
     let subtotal = 0;
-    const orderItemsData = [];
+    const orderItemsData: any[] = [];
 
     for (const item of items) {
       const product = await prisma.product.findUnique({
