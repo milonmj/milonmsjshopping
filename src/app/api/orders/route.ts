@@ -96,7 +96,15 @@ let discountAmount = 0;
     const charge = deliveryDistrict?.trim().toLowerCase() === "dhaka" ? 70 : 130;
     const totalAmount = subtotal + charge - (discountAmount || 0);
 
-    const order = await prisma.order.create({
+    const order = await prisma.$transaction(async (tx) => {
+  for (const it of orderItemsData) {
+    const r = await tx.product.updateMany({
+      where: { id: it.productId, stock: { gte: it.quantity } },
+      data: { stock: { decrement: it.quantity } },
+    });
+    if (r.count === 0) throw new Error("OUT_OF_STOCK");
+  }
+  return tx.order.create({
       data: {
         orderNumber: generateOrderNumber(),
         userId: session?.user?.id || null,
