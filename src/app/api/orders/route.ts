@@ -99,8 +99,8 @@ let discountAmount = 0;
     const order = await prisma.$transaction(async (tx) => {
   for (const it of orderItemsData) {
     const r = await tx.product.updateMany({
-      where: { id: it.productId, stock: { gte: it.quantity } },
-      data: { stock: { decrement: it.quantity } },
+      where: { id: it.productId, quantity: { gte: it.quantity } },
+      data: { quantity: { decrement: it.quantity } },
     });
     if (r.count === 0) throw new Error("OUT_OF_STOCK");
   }
