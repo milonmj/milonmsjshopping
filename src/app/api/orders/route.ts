@@ -125,9 +125,15 @@ let discountAmount = 0;
         },
       },
     });
-
+   });
     return NextResponse.json({ ok: true, order });
   } catch (err: any) {
+        if (err?.message === "OUT_OF_STOCK") {
+      return NextResponse.json(
+        { ok: false, error: "দুঃখিত, কিছু পণ্যের স্টক শেষ বা কম আছে।" },
+        { status: 400 }
+      );
+        }
     return NextResponse.json(
       { ok: false, error: err?.message || "Could not place order." },
       { status: 500 }
