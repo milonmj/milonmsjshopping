@@ -28,6 +28,7 @@ export default function ProductActions({ productId, slug, name, image, unitPrice
 
   function handleAddToCart() {
     addItem({ productId, slug, name, image, unitPrice, quantity: qty, maxQuantity , wholesalePrice, minWholesaleQty });
+    trackPixel("AddToCart", { content_ids: [productId], content_name: name, content_type: "product", value: unitPrice * qty, currency: "BDT" });
   }
 
   function handleBuyNow() {
