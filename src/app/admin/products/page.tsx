@@ -81,7 +81,12 @@ export default async function AdminProductsPage({
                 <td className="p-3 text-brand-ink/60">{locale === "bn" ? p.category.nameBn : p.category.nameEn}</td>
                 <td className="p-3">৳{Number(p.discountPrice ?? p.retailPrice)}</td>
                 <td className="p-3">{p.quantity}</td>
-                <td className="p-3">
+                <td className={`p-3 ${p.quantity <= p.lowStockAlertAt ? "font-semibold text-red-600" : ""}`}>
+  {p.quantity}
+  {p.quantity <= p.lowStockAlertAt && (
+    <span className="ml-1 text-xs">{p.quantity <= 0 ? "(শেষ)" : "(কম)"}</span>
+  )}
+</td>
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${p.isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
                     {p.isActive ? (locale === "bn" ? "সক্রিয়" : "Active") : (locale === "bn" ? "নিষ্ক্রিয়" : "Inactive")}
                   </span>
