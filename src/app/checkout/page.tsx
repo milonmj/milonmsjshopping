@@ -56,6 +56,18 @@ const [appliedCoupon, setAppliedCoupon] = useState<{
   const [saveAddress, setSaveAddress] = useState(false);
   const [prefilled, setPrefilled] = useState(false);
 
+  const [checkoutTracked, setCheckoutTracked] = useState(false);
+useEffect(() => {
+  if (checkoutTracked || items.length === 0) return;
+  setCheckoutTracked(true);
+  trackPixel("InitiateCheckout", {
+    content_ids: items.map((i) => i.productId),
+    content_type: "product",
+    num_items: items.reduce((s, i) => s + i.quantity, 0),
+    value: subtotal,
+    currency: "BDT",
+  });
+}, [items, subtotal, checkoutTracked]);
   // Prefill name/phone from the account once, and load saved addresses
   useEffect(() => {
     if (status !== "authenticated" || prefilled) return;
