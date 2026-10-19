@@ -207,7 +207,14 @@ const total = subtotal + (items.length ? deliveryCharge : 0) - discountAmount;
         }).catch(() => {});
       }
 
-      clearCart();
+      
+      trackPixel("Purchase", {
+  content_ids: items.map((i) => i.productId),
+  content_type: "product",
+  num_items: items.reduce((s, i) => s + i.quantity, 0),
+  value: total,
+  currency: "BDT",
+});clearCart();
       router.push(`/order-confirmation/${data.order.orderNumber}`);
     } catch {
       setError(locale === "bn" ? "অর্ডার করা যায়নি। আবার চেষ্টা করুন।" : "Could not place the order. Please try again.");
