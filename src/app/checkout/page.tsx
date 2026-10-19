@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { useCart } from "@/lib/cart-context";
+import { trackPixel } from "@/lib/fbq";
 
 const PAYMENT_METHODS = [
   { value: "COD", labelBn: "ক্যাশ অন ডেলিভারি", labelEn: "Cash on Delivery", ready: true },
