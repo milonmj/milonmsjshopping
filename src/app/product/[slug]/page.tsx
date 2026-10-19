@@ -96,6 +96,11 @@ export default async function ProductPage({ params, searchParams }: Props) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
+              <ViewContentTracker
+  id={product.id}
+  name={product.nameEn}
+  price={Number(product.discountPrice ?? product.retailPrice)}
+/>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="grid gap-8 md:grid-cols-2">
