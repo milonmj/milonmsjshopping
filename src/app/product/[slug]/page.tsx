@@ -6,6 +6,7 @@ import ProductActions from "@/components/ProductActions";
 import ProductImage from "@/components/ProductImage";
 import ShareButtons from "@/components/ShareButtons";
 import ReviewSection from "@/components/ReviewSection";
+import ViewContentTracker from "@/components/ViewContentTracker";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
 type Props = { params: { slug: string }; searchParams?: { lang?: string } };
