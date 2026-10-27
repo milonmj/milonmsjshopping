@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { ChevronLeft } from "lucide-react";
+import ResetPasswordButton from "./ResetPasswordButton";
 
 const STATUS_LABELS: Record<string, { bn: string; en: string }> = {
   PENDING: { bn: "পেন্ডিং", en: "Pending" },
