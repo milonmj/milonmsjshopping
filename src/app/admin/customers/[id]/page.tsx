@@ -58,6 +58,7 @@ export default async function AdminCustomerDetailPage({
               ))}
             </div>
           )}
+          <ResetPasswordButton customerId={customer.id} locale={locale} />
         </div>
 
         <div className="lg:col-span-2 rounded-xl border border-brand-pinkLight bg-white">
