@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Hero from "@/components/Hero";
 import ProductGrid from "@/components/ProductGrid";
+import HeroBanner from "@/components/HeroBanner";
 
 export const revalidate = 60;
 
