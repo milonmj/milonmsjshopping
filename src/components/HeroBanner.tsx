@@ -24,7 +24,7 @@ export default function HeroBanner() {
             সারা বাংলাদেশে হোম ডেলিভারি | ৫টি কিনলে পাইকারি দাম
           </p>
           <Link
-            href="/category/clothing"
+            href="/product/white-embroidery-three-piece-set"
             className="mt-6 inline-block rounded-full bg-[#e8317b] px-8 py-3 font-semibold text-white"
           >
             এখনই কিনুন
