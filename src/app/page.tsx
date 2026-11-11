@@ -15,6 +15,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { lang
 
   return (
     <>
+      <HeroBanner />
       <Hero locale={locale} />
       <ProductGrid title={locale === "bn" ? "বিশেষ পণ্য" : "Featured Products"} products={featured} locale={locale} />
       <ProductGrid title={locale === "bn" ? "নতুন সংগ্রহ" : "New Arrivals"} products={newArrivals} locale={locale} />
