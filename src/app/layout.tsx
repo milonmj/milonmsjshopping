@@ -7,9 +7,9 @@ import { prisma } from "@/lib/prisma";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} — Clothing, Cosmetics, Shoes & Electric Items`,
+    title: "Milon M&J Shopping | M&J Shopping Bangladesh",
   description:
-    `${SITE_NAME} — retail & wholesale clothing, cosmetics, shoes and electric items, delivered across Bangladesh.`,
+    "মিলন এম অ্যান্ড জে শপিং (Milon M&J Shopping) - মেয়েদের পোশাকের অনলাইন শপ। এম এন্ড জে শপিং থেকে অর্ডার করুন, বাংলাদেশের যেকোনো জায়গায় ডেলিভারি।",
   metadataBase: new URL(SITE_URL),
   verification: {
     google: "Vq0JscILAibRCtubOqoEpaIvX1r5NFIZTWOS__gHDas",
